@@ -1,4 +1,10 @@
 '''
+ANIMATION PROJECT
+-----------------
+Your choice!!! Have fun and be creative.
+
+'''
+'''
 SNOWFALL
 --------
 Try to create the snowfall animation by meeting
@@ -17,6 +23,7 @@ the following requirements:
 
 
 '''
+# splatter drip
 import arcade
 import random
 SW = 600
@@ -35,8 +42,20 @@ class Ball():
         arcade.draw_circle_filled(self.pos_x,self.pos_y,self.rad,self.hue)
 
     def update_ball(self):
-        self.pos_x+=self.dx
-        self.pos_y+=self.dy
+        chance = random.randint(0,2)
+        if self.rad > 0 :
+            self.rad-=self.dx
+        # if self.rad == 0:
+        #     del self
+        # if chance == 0:
+        #     self.hue = (random.randint(200, 230), random.randint(0, 200), random.randint(50, 255))
+        #
+        # if self.rad > 0:
+        #     self.rad-=self.dx
+        #     # self.rad *= -1
+        # self.dx += 2
+
+
 
 
 class MyGame(arcade.Window):
@@ -44,18 +63,18 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.BLACK)
         self.ball_list=[]
-        for i in range (25):
-            rad = random.randint(2, 6)
+        for i in range (1):
+            rad = random.randint(3, 9)
             x = random.randint(rad,SW-rad)
-            y = random.randint(600,700)
-            dx = random.randint(0,0)
-            dy = random.randint(-4, -1)
+            y = random.randint(rad,SH-rad)
+            dx = random.randint(1,1)
+            dy = random.randint(0, 0)
             hue = (random.randint(200, 230),random.randint(0, 200),random.randint(50, 255))
             hue = (arcade.color.RED)
-            # if dx == 0:
-            #     dx = random.randint(1, 3)
-            if dy == -1:
-                dy = random.randint(-4, -1)
+            if dx == 0:
+                dx = random.randint(1, 3)
+            if dy == 0:
+                dy = random.randint(-3, -1)
             self.ball = Ball(x,y,dx,dy,rad,hue)
             self.ball_list.append(self.ball)
     def on_draw(self):
@@ -66,18 +85,22 @@ class MyGame(arcade.Window):
     def on_update(self, dt):
         for i in (self.ball_list):
             i.update_ball()
-        rad = random.randint(2, 6)
-        x = random.randint(rad, SW - rad)
-        y = random.randint(600, 700)
-        dx = random.randint(0, 0)
-        dy = random.randint(-4, -1)
+        rad = random.randint(5, 40)
+        x = random.randint(0,600)
+        y = random.randint(0,600)
+        dx = random.randint(1, 1)
+        dy = random.randint(0, 0)
         hue = (random.randint(200, 230), random.randint(0, 200), random.randint(50, 255))
-        chance = random.randint(0,2)
+        chance = random.randint(0,0)
         if chance == 0:
             self.ball = Ball(x, y, dx, dy, rad, hue)
             self.ball_list.append(self.ball)
+
+
+
+
 def main():
-    window = MyGame(SW,SH,"Snowfall")
+    window = MyGame(SW,SH,"Twinkle")
     arcade.run()
 
 if __name__ == "__main__":
