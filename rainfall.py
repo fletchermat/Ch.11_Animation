@@ -69,7 +69,7 @@ class MyGame(arcade.Window):
             y = random.randint(rad,SH-rad)
             dx = random.randint(1,1)
             dy = random.randint(0, 0)
-            hue = (random.randint(200, 230),random.randint(0, 200),random.randint(50, 255))
+            hue = (random.randint(0,200),random.randint(40, 230),random.randint(200, 230))
             hue = (arcade.color.RED)
             if dx == 0:
                 dx = random.randint(1, 3)
@@ -90,17 +90,20 @@ class MyGame(arcade.Window):
         y = random.randint(0,600)
         dx = random.randint(1, 1)
         dy = random.randint(0, 0)
-        hue = (random.randint(200, 230), random.randint(0, 200), random.randint(50, 255))
+        hue1 = (random.randint(0,200),random.randint(40, 230),random.randint(200, 230))
+        hue = (random.randint(0, 200), random.randint(200, 235), random.randint(50, 235))
+        hue = (random.randint(200, 245), random.randint(60, 235), random.randint(200, 245))
+        hue = random.randint(200, 230), random.randint(0, 200), random.randint(50, 255)
         chance = random.randint(0,0)
         if chance == 0:
-            self.ball = Ball(x, y, dx, dy, rad, hue)
+            self.ball = Ball(x, y, dx, dy, rad, hue1)
             self.ball_list.append(self.ball)
 
 
 
 
 def main():
-    window = MyGame(SW,SH,"Twinkle")
+    window = MyGame(SW,SH,"Rainfall")
     arcade.run()
 
 if __name__ == "__main__":

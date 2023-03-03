@@ -27,7 +27,14 @@ import arcade
 import random
 SW = 600
 SH = 600
-
+hue1 = (random.randint(200, 230), random.randint(0, 200), random.randint(50, 255))
+hue2 = (random.randint(0,200),random.randint(40, 230),random.randint(200, 230))
+hue3 = (random.randint(200, 255), random.randint(60, 235), random.randint(0, 150))
+hue4 = (random.randint(0, 200), random.randint(200, 235), random.randint(50, 235))
+# hue1 = arcade.color.RED
+# hue2 = arcade.color.BLUE
+# hue3 = arcade.color.GREEN
+# hue4 = arcade.color.YELLOW
 class Ball():
     def __init__(self,pos_x,pos_y,dx,dy,rad,hue,tilt,sides):
         self.pos_x = pos_x
@@ -46,32 +53,32 @@ class Ball():
         self.pos_x+=self.dx
         self.pos_y+=self.dy
         #bounce ball of edge of screen
-        if self.pos_x < self.rad+24:
+        if self.pos_x < self.rad+22:
             self.dx *= -1
-            self.hue = arcade.color.RED
-        if self.pos_x > SW-self.rad-24:
+            self.hue = hue1
+        if self.pos_x > SW-self.rad-22:
             self.dx*=-1
-            self.hue = arcade.color.GREEN
-        if self.pos_y < self.rad+24:
+            self.hue = hue3
+        if self.pos_y < self.rad+22:
             self.dy *= -1
-            self.hue = arcade.color.BLUE
-        if self.pos_y > SH-self.rad-24:
+            self.hue = hue2
+        if self.pos_y > SH-self.rad-22:
             self.dy*=-1
-            self.hue = arcade.color.YELLOW
+            self.hue = hue4
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.AERO_BLUE)
         self.ball_list=[]
-        for i in range (400):
+        for i in range (30):
             rad = random.randint(10, 50)
-            # x = random.randint(rad+24,SW-rad-24)
-            # y = random.randint(rad+24,SH-rad-24)
-            x = 300
-            y = 300
-            dx = random.randint(7,7)
-            dy = random.randint(0, 2)
+            x = random.randint(rad+24,SW-rad-24)
+            y = random.randint(rad+24,SH-rad-24)
+            # x = 300
+            # y = 300
+            dx = random.randint(-5,5)
+            dy = random.randint(-5, 5)
             hue = (random.randint(220, 255),random.randint(230, 255),random.randint(240, 255))
             if dx == 0:
                 dx = random.randint(1, 3)
@@ -81,10 +88,11 @@ class MyGame(arcade.Window):
             self.ball_list.append(self.ball)
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, arcade.color.RED)
-        arcade.draw_lrtb_rectangle_filled(0, 600, 30, 0, arcade.color.BLUE)
-        arcade.draw_lrtb_rectangle_filled(570, 600, 600, 0, arcade.color.GREEN)
-        arcade.draw_lrtb_rectangle_filled(0, 600, 600, 570, arcade.color.YELLOW)
+
+        arcade.draw_lrtb_rectangle_filled(0, 30, 600, 0, hue1)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 30, 0, hue2)
+        arcade.draw_lrtb_rectangle_filled(570, 600, 600, 0, hue3)
+        arcade.draw_lrtb_rectangle_filled(0, 600, 600, 570, hue4)
         for i in (self.ball_list):
             i.draw_ball()
 
@@ -108,3 +116,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # blue light color scheme
+    # random.randint(0, 255), random.randint(30, 255), random.randint(220, 255)
