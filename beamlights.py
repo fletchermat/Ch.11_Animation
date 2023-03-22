@@ -5,7 +5,7 @@ import random
 SW = 600
 SH = 600
 
-class Ball():
+class line():
     def __init__(self,pos_x,pos_y,dx,dy,rad,hue):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -14,10 +14,10 @@ class Ball():
         self.rad = rad
         self.hue = hue
 
-    def draw_ball(self):
+    def draw_line(self):
         arcade.draw_line(self.pos_x,self.pos_y, self.dx,self.dy,self.hue)
 
-    def update_ball(self):
+    def update_line(self):
         self.pos_x += self.dx
         self.pos_y += self.dy
         # bounce ball of edge of screen
@@ -38,7 +38,7 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.BLACK)
-        self.ball_list=[]
+        self.line_list=[]
         for i in range (1):
             rad = random.randint(3, 9)
             x = random.randint(rad,SW-rad)
@@ -51,16 +51,16 @@ class MyGame(arcade.Window):
             #     dx = random.randint(1, 3)
             # if dy == 0:
             #     dy = random.randint(-3, -1)
-            self.ball = Ball(x,y,dx,dy,rad,hue)
-            self.ball_list.append(self.ball)
+            self.line = line(x,y,dx,dy,rad,hue)
+            self.line_list.append(self.line)
     def on_draw(self):
         arcade.start_render()
-        for i in (self.ball_list):
-            i.draw_ball()
+        for i in (self.line_list):
+            i.draw_line()
 
     def on_update(self, dt):
-        for i in (self.ball_list):
-            i.update_ball()
+        for i in (self.line_list):
+            i.update_line()
         rad = random.randint(5, 40)
         x = random.randint(40,560)
         y = random.randint(40,560)
@@ -71,8 +71,8 @@ class MyGame(arcade.Window):
         chance = random.randint(0,30)
 
         if chance == 0:
-            self.ball = Ball(x, y, dx, dy, rad, hue)
-            self.ball_list.append(self.ball)
+            self.line = line(x, y, dx, dy, rad, hue)
+            self.line_list.append(self.line)
 
 
 

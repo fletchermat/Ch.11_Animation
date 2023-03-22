@@ -103,7 +103,7 @@ class MyGame(arcade.Window):
 
 
 def main():
-    window = MyGame(SW,SH,"Rainfall")
+    window = MyGame(SW,SH,"Lines")
     arcade.run()
 
 if __name__ == "__main__":
